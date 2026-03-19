@@ -212,6 +212,48 @@ export default {
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
+/* ===== Dark mode overrides ===== */
+[data-theme="dark"] {
+  /* Backgrounds */
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-border: #334155;
+  --color-border-light: #293548;
+  /* Text */
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+  /* Accent stays amber – works well on dark */
+  --color-accent: #f59e0b;
+  --color-accent-hover: #fbbf24;
+  --color-accent-light: rgba(245, 158, 11, 0.12);
+  /* Status colours – slightly adjusted for dark surfaces */
+  --color-success: #34d399;
+  --color-success-bg: rgba(52, 211, 153, 0.12);
+  --color-warning: #fbbf24;
+  --color-warning-bg: rgba(251, 191, 36, 0.12);
+  --color-danger: #f87171;
+  --color-danger-bg: rgba(248, 113, 113, 0.12);
+  --color-info: #60a5fa;
+  --color-info-bg: rgba(96, 165, 250, 0.12);
+  /* Shadows – more visible on dark surfaces */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Smooth theme transition ===== */
+/* Exclude transitions that conflict with component-specific animations */
+body *,
+body *::before,
+body *::after {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
 /* ===== Base styles ===== */
 body {
   font-family: var(--font-body);
@@ -273,7 +315,7 @@ body {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1a1208;
+  color: var(--color-text-primary);
   margin-bottom: 0.375rem;
   letter-spacing: -0.025em;
 }
@@ -302,7 +344,7 @@ body {
 }
 
 .stat-card:hover {
-  border-color: #d4cfc8;
+  border-color: var(--color-border);
   box-shadow: var(--shadow-md);
   transform: translateY(-1px);
 }
@@ -402,7 +444,7 @@ th {
 td {
   padding: 0.5rem 0.75rem;
   border-top: 1px solid var(--color-border-light);
-  color: #334155;
+  color: var(--color-text-primary);
   font-size: 0.875rem;
 }
 
@@ -411,7 +453,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background: #faf9f7;
+  background: var(--color-border-light);
 }
 
 /* ===== Badges ===== */
@@ -427,57 +469,57 @@ tbody tr:hover {
 
 .badge.success {
   background: var(--color-success-bg);
-  color: #065f46;
+  color: var(--color-success);
 }
 
 .badge.warning {
   background: var(--color-warning-bg);
-  color: #92400e;
+  color: var(--color-warning);
 }
 
 .badge.danger {
   background: var(--color-danger-bg);
-  color: #991b1b;
+  color: var(--color-danger);
 }
 
 .badge.info {
   background: var(--color-info-bg);
-  color: #1e40af;
+  color: var(--color-info);
 }
 
 .badge.increasing {
   background: var(--color-success-bg);
-  color: #065f46;
+  color: var(--color-success);
 }
 
 .badge.decreasing {
   background: var(--color-danger-bg);
-  color: #991b1b;
+  color: var(--color-danger);
 }
 
 .badge.stable {
-  background: #e0e7ff;
-  color: #3730a3;
+  background: var(--color-info-bg);
+  color: var(--color-info);
 }
 
 .badge.high {
   background: var(--color-danger-bg);
-  color: #991b1b;
+  color: var(--color-danger);
 }
 
 .badge.medium {
-  background: #fed7aa;
-  color: #92400e;
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
 }
 
 .badge.low {
   background: var(--color-info-bg);
-  color: #1e40af;
+  color: var(--color-info);
 }
 
 .badge.restocking {
-  background: rgba(245, 158, 11, 0.12);
-  color: #92400e;
+  background: var(--color-accent-light);
+  color: var(--color-accent);
 }
 
 /* ===== Loading / Error states ===== */
