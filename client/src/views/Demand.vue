@@ -232,17 +232,18 @@ export default {
 }
 
 .trend-card {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
+  background: #faf9f7;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
   transition: all 0.2s ease;
 }
 
 .trend-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
 }
 
+/* Colored left borders stay as-is — semantic meaning */
 .increasing-card {
   border-left: 4px solid #10b981;
 }
@@ -261,7 +262,7 @@ export default {
   gap: 1rem;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .trend-icon {
@@ -276,25 +277,26 @@ export default {
   flex-shrink: 0;
 }
 
+/* Icon backgrounds: warm-shifted but retain hue identity */
 .increasing-card .trend-icon {
-  background: #d1fae5;
+  background: #d4f5e6;
   color: #059669;
 }
 
 .stable-card .trend-icon {
-  background: #dbeafe;
+  background: #dce8fc;
   color: #2563eb;
 }
 
 .decreasing-card .trend-icon {
-  background: #fee2e2;
+  background: #fde4e4;
   color: #dc2626;
 }
 
 .trend-label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -302,7 +304,7 @@ export default {
 .trend-count {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text-primary);
   margin-top: 0.25rem;
 }
 
@@ -317,18 +319,18 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0.75rem;
-  background: #f8fafc;
-  border-radius: 6px;
+  background: #f5f3ef;
+  border-radius: var(--radius-sm);
   transition: background 0.2s;
 }
 
 .trend-item:hover {
-  background: #f1f5f9;
+  background: #ede9e1;
 }
 
 .item-name {
   font-size: 0.875rem;
-  color: #0f172a;
+  color: var(--color-text-primary);
   font-weight: 500;
   flex: 1;
   overflow: hidden;
@@ -356,12 +358,12 @@ export default {
 }
 
 .item-change.neutral {
-  color: #64748b;
+  color: var(--color-text-secondary);
 }
 
 .more-items {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
   font-style: italic;
   text-align: center;
   padding: 0.5rem;

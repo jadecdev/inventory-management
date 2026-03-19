@@ -727,6 +727,19 @@ export default {
 </script>
 
 <style scoped>
+/* Staggered fade-in for KPI cards */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.kpi-card { animation: fadeInUp 0.4s ease both; }
+.kpi-card:nth-child(1) { animation-delay: 0.05s; }
+.kpi-card:nth-child(2) { animation-delay: 0.1s; }
+.kpi-card:nth-child(3) { animation-delay: 0.15s; }
+.kpi-card:nth-child(4) { animation-delay: 0.2s; }
+.kpi-card:nth-child(5) { animation-delay: 0.25s; }
+
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -736,7 +749,7 @@ export default {
 
 .header-meta {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
 }
 
 .kpi-section {
@@ -744,11 +757,12 @@ export default {
 }
 
 .section-title {
-  font-size: 1rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--color-accent);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   margin-bottom: 1rem;
 }
 
@@ -759,10 +773,17 @@ export default {
 }
 
 .kpi-card {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.kpi-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #d6d0c8;
 }
 
 .kpi-header {
@@ -772,36 +793,38 @@ export default {
 .kpi-label {
   font-size: 0.813rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.025em;
 }
 
 .kpi-value {
+  font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text-primary);
   margin-bottom: 0.5rem;
   letter-spacing: -0.025em;
 }
 
 .kpi-goal {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
   margin-bottom: 0.75rem;
 }
 
 .kpi-progress-bar {
   width: 100%;
   height: 6px;
-  background: #f1f5f9;
+  background: var(--color-border-light);
   border-radius: 3px;
   overflow: hidden;
 }
 
 .kpi-progress {
   height: 100%;
-  background: #3b82f6;
+  /* Amber accent instead of blue for default progress */
+  background: var(--color-accent);
   border-radius: 3px;
   transition: width 0.6s ease;
 }
@@ -815,6 +838,11 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
   margin-bottom: 1.5rem;
+}
+
+/* Warm border on chart cards (inherits from global .card, but reinforce here) */
+.chart-card {
+  border-color: var(--color-border);
 }
 
 .chart-card.full-width {
@@ -928,16 +956,17 @@ export default {
 
 .health-metric-label {
   font-size: 0.688rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .health-metric-value {
+  font-family: var(--font-heading);
   font-size: 1.75rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text-primary);
   letter-spacing: -0.025em;
 }
 
@@ -978,8 +1007,9 @@ export default {
 .h-bar-container {
   flex: 1;
   height: 32px;
-  background: #f8fafc;
-  border-radius: 6px;
+  /* Warm off-white instead of cold #f8fafc */
+  background: #f5f3ef;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
@@ -1011,7 +1041,7 @@ export default {
   padding-right: 1rem;
   font-size: 0.75rem;
   color: #94a3b8;
-  border-right: 1px solid #e2e8f0;
+  border-right: 1px solid var(--color-border);
 }
 
 .line-chart-area {
@@ -1052,7 +1082,7 @@ export default {
 }
 
 .line-bar.empty-bar {
-  background: #e2e8f0;
+  background: var(--color-border);
   box-shadow: none;
   min-height: 4px;
 }
@@ -1070,7 +1100,7 @@ export default {
 .line-bar-label {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-text-secondary);
   white-space: nowrap;
 }
 
@@ -1109,7 +1139,8 @@ export default {
 }
 
 .clickable-row:hover {
-  background: #eff6ff !important;
+  /* Warm amber tint instead of blue #eff6ff */
+  background: var(--color-accent-light) !important;
 }
 
 /* Tasks Card Styles */
@@ -1130,23 +1161,24 @@ export default {
 .task-input {
   flex: 1;
   padding: 0.75rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
   font-size: 0.95rem;
   transition: border-color 0.2s ease;
 }
 
 .task-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--color-accent);
 }
 
 .task-add-btn {
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* Amber gradient replaces purple gradient */
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -1164,7 +1196,7 @@ export default {
 .no-tasks {
   text-align: center;
   padding: 2rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
   font-style: italic;
 }
 
@@ -1179,15 +1211,15 @@ export default {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem;
-  background: #f8fafc;
-  border-radius: 8px;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
   border: 2px solid transparent;
   transition: all 0.2s ease;
 }
 
 .task-item:hover {
-  border-color: #e2e8f0;
-  background: white;
+  border-color: var(--color-border);
+  background: var(--color-surface);
 }
 
 .task-item.completed {
@@ -1203,14 +1235,15 @@ export default {
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: #667eea;
+  /* Amber accent for checkbox */
+  accent-color: var(--color-accent);
 }
 
 .task-text {
   flex: 1;
   cursor: pointer;
   user-select: none;
-  color: #0f172a;
+  color: var(--color-text-primary);
   font-size: 0.95rem;
 }
 
@@ -1220,7 +1253,7 @@ export default {
   background: #ef4444;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
@@ -1239,7 +1272,7 @@ export default {
 .po-button {
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 0.813rem;
   font-weight: 600;
   cursor: pointer;
@@ -1248,17 +1281,19 @@ export default {
 }
 
 .po-button.create {
-  background: #3b82f6;
+  /* Amber instead of blue for the primary Create PO action */
+  background: var(--color-accent);
   color: white;
 }
 
 .po-button.create:hover {
-  background: #2563eb;
+  background: var(--color-accent-hover);
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
 }
 
 .po-button.view {
+  /* Secondary gray remains unchanged */
   background: #64748b;
   color: white;
 }
