@@ -243,7 +243,7 @@ export default {
   flex-direction: column;
   z-index: 200;
   transition: width 0.2s ease;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .sidebar--collapsed {
@@ -375,7 +375,7 @@ export default {
 .sidebar__lang {
   padding: 0.5rem 0.5rem;
   flex-shrink: 0;
-  overflow: hidden;
+  overflow: visible;
   transition: opacity 0.2s ease;
 }
 
