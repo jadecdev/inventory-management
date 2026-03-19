@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from '../composables/useI18n'
 import { useAuth } from '../composables/useAuth'
+import { useTheme } from '../composables/useTheme'
 import LanguageSwitcher from './LanguageSwitcher.vue'
 
 export default {
@@ -23,6 +24,7 @@ export default {
     const route = useRoute()
     const { t } = useI18n()
     const { currentUser, getInitials } = useAuth()
+    const { isDark, toggleTheme } = useTheme()
 
     const navItems = computed(() => [
       {
@@ -87,7 +89,9 @@ export default {
       toggleCollapsed,
       handleNavClick,
       currentUser,
-      userInitials
+      userInitials,
+      isDark,
+      toggleTheme
     }
   }
 }
@@ -192,6 +196,61 @@ export default {
     <!-- Divider -->
     <div class="sidebar__divider" />
 
+    <!-- Dark mode toggle -->
+    <button
+      class="sidebar__theme-toggle"
+      :class="{ 'sidebar__theme-toggle--collapsed': collapsed }"
+      @click="toggleTheme"
+      :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+      :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+      :aria-pressed="isDark"
+    >
+      <!-- Sun icon (shown in dark mode — click to go light) -->
+      <svg
+        v-if="isDark"
+        class="sidebar__theme-icon"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </svg>
+      <!-- Moon icon (shown in light mode — click to go dark) -->
+      <svg
+        v-else
+        class="sidebar__theme-icon"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+      <span class="sidebar__theme-label" :class="{ 'sidebar__theme-label--hidden': collapsed }">
+        {{ isDark ? 'Light mode' : 'Dark mode' }}
+      </span>
+    </button>
+
+    <!-- Divider -->
+    <div class="sidebar__divider" />
+
     <!-- Profile area -->
     <div
       class="sidebar__profile"
@@ -243,7 +302,7 @@ export default {
   flex-direction: column;
   z-index: 200;
   transition: width 0.2s ease;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .sidebar--collapsed {
@@ -375,7 +434,7 @@ export default {
 .sidebar__lang {
   padding: 0.5rem 0.5rem;
   flex-shrink: 0;
-  overflow: hidden;
+  overflow: visible;
   transition: opacity 0.2s ease;
 }
 
@@ -384,6 +443,61 @@ export default {
   pointer-events: none;
   height: 0;
   padding: 0;
+}
+
+/* ===== Theme toggle ===== */
+.sidebar__theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.625rem 1.5rem;
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: left;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sidebar__theme-toggle:hover {
+  background: #1a1f35;
+  color: #e2e0db;
+}
+
+.sidebar__theme-toggle:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: -2px;
+}
+
+.sidebar__theme-toggle--collapsed {
+  justify-content: center;
+  padding: 0.625rem 0;
+}
+
+.sidebar__theme-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.sidebar__theme-label {
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, width 0.2s ease;
+  opacity: 1;
+}
+
+.sidebar__theme-label--hidden {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 /* ===== Profile area ===== */
