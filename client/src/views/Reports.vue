@@ -321,12 +321,14 @@ export default {
   padding: 0;
 }
 
+/* Warm border and shadow */
 .card {
-  background: white;
-  border-radius: 12px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
 }
 
 .card-header {
@@ -336,7 +338,7 @@ export default {
 .card-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--color-text-primary);
   margin: 0;
 }
 
@@ -345,22 +347,28 @@ export default {
   border-collapse: collapse;
 }
 
+/* Warm table header with monospace font */
 .reports-table th {
-  background: #f8fafc;
+  background: var(--color-border-light);
   padding: 0.75rem;
   text-align: left;
   font-weight: 600;
-  color: #64748b;
-  border-bottom: 2px solid #e2e8f0;
+  color: var(--color-text-secondary);
+  border-bottom: 2px solid var(--color-border);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
+/* Warm table row borders */
 .reports-table td {
   padding: 0.75rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .reports-table tr:hover {
-  background: #f8fafc;
+  background: var(--color-border-light);
 }
 
 .chart-container {
@@ -391,22 +399,25 @@ export default {
   width: 100%;
 }
 
+/* Amber gradient instead of blue */
 .bar {
   width: 100%;
-  background: linear-gradient(to top, #3b82f6, #60a5fa);
+  background: linear-gradient(to top, var(--color-accent), #fbbf24);
   border-radius: 4px 4px 0 0;
   transition: all 0.3s;
   cursor: pointer;
 }
 
+/* Darker amber on hover */
 .bar:hover {
-  background: linear-gradient(to top, #2563eb, #3b82f6);
+  background: linear-gradient(to top, var(--color-accent-hover), var(--color-accent));
 }
 
+/* Warm bar label color */
 .bar-label {
   margin-top: 0.5rem;
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
   text-align: center;
   transform: rotate(-45deg);
   white-space: nowrap;
@@ -420,24 +431,28 @@ export default {
   margin-top: 1.5rem;
 }
 
+/* Amber left border instead of blue */
 .stat-card {
-  background: white;
-  border-radius: 12px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid #3b82f6;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
 }
 
 .stat-label {
   font-size: 0.875rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
   margin-bottom: 0.5rem;
 }
 
+/* Monospace font for stat values */
 .stat-value {
   font-size: 1.875rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
 }
 
 .badge {
@@ -462,6 +477,7 @@ export default {
   color: #991b1b;
 }
 
+/* Keep green/red for positive/negative changes */
 .positive-change {
   color: #16a34a;
   font-weight: 600;
@@ -475,14 +491,14 @@ export default {
 .loading {
   text-align: center;
   padding: 3rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
 }
 
 .error {
   background: #fee2e2;
   color: #991b1b;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   margin: 1rem 0;
 }
 </style>

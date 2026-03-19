@@ -102,11 +102,12 @@ export default {
 
 <style scoped>
 .filters-bar {
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
+  /* Warm surface instead of cold #f8fafc */
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
   padding: 0.75rem 0;
   position: sticky;
-  top: 70px;
+  top: 0;
   z-index: 90;
 }
 
@@ -133,19 +134,24 @@ export default {
 }
 
 .filter-group label {
-  font-size: 0.75rem;
+  /* Monospace heading font, uppercase, secondary color */
+  font-family: var(--font-heading);
+  font-size: 0.688rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   white-space: nowrap;
 }
 
 .filter-select {
   padding: 0.4rem 0.75rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
+  /* Warm border instead of cool slate */
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   font-size: 0.813rem;
-  color: #0f172a;
-  background: white;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
   cursor: pointer;
   transition: all 0.2s;
   font-weight: 500;
@@ -153,13 +159,14 @@ export default {
 }
 
 .filter-select:hover {
-  border-color: #94a3b8;
+  border-color: #c4bdb4;
 }
 
 .filter-select:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  /* Amber focus ring instead of blue */
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
 }
 
 .reset-filters-btn {
@@ -167,19 +174,20 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 0.4rem;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  color: #64748b;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  /* Warm amber tint for the reset icon */
+  color: var(--color-text-secondary);
   cursor: pointer;
   transition: all 0.2s;
   flex-shrink: 0;
 }
 
 .reset-filters-btn:hover:not(:disabled) {
-  background: #f8fafc;
-  border-color: #cbd5e1;
-  color: #0f172a;
+  background: var(--color-accent-light);
+  border-color: var(--color-accent);
+  color: var(--color-accent-hover);
 }
 
 .reset-filters-btn:disabled {
@@ -190,5 +198,51 @@ export default {
 .reset-filters-btn svg {
   width: 18px;
   height: 18px;
+}
+
+@media (max-width: 1024px) {
+  .filters-container {
+    padding: 0 1rem;
+  }
+
+  .filters-grid {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .filter-select {
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filters-bar {
+    top: auto;
+    position: relative;
+  }
+
+  .filters-container {
+    padding: 0 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .filters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.375rem;
+  }
+
+  .filter-group {
+    min-width: 0;
+  }
+
+  .filter-group label {
+    display: none;
+  }
+
+  .filter-select {
+    min-width: 0;
+    width: 100%;
+  }
 }
 </style>

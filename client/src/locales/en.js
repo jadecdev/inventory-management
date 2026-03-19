@@ -6,8 +6,12 @@ export default {
     orders: 'Orders',
     finance: 'Finance',
     demandForecast: 'Demand Forecast',
+    reports: 'Reports',
+    restocking: 'Restocking',
     companyName: 'Catalyst Components',
-    subtitle: 'Inventory Management System'
+    subtitle: 'Inventory Management System',
+    collapse: 'Collapse sidebar',
+    expand: 'Expand sidebar'
   },
 
   // Dashboard
@@ -206,7 +210,8 @@ export default {
     backordered: 'Backordered',
     inStock: 'In Stock',
     lowStock: 'Low Stock',
-    adequate: 'Adequate'
+    adequate: 'Adequate',
+    restocking: 'Restocking'
   },
 
   // Trends
@@ -309,6 +314,37 @@ export default {
     english: 'English',
     japanese: 'Japanese',
     selectLanguage: 'Select Language'
+  },
+
+  // Restocking
+  restocking: {
+    navTitle: 'Restocking',
+    title: 'Restocking Recommendations',
+    description: 'Plan restocking orders based on demand forecasts and budget',
+    budget: 'Budget',
+    recommendations: 'Recommendations',
+    sku: 'SKU',
+    itemName: 'Item Name',
+    trend: 'Trend',
+    forecastedDemand: 'Forecasted Demand',
+    unitCost: 'Unit Cost',
+    recommendedQty: 'Recommended Qty',
+    lineTotal: 'Line Total',
+    totalItems: 'Total Items',
+    totalCost: 'Total Cost',
+    remainingBudget: 'Remaining Budget',
+    placeOrder: 'Place Order',
+    orderPlaced: 'Order placed successfully!',
+    placingOrder: 'Placing order...',
+    emptyState: 'No items fit within the current budget. Try increasing the budget.',
+    submittedOrders: 'Submitted Orders',
+    orderNumber: 'Order Number',
+    items: 'Items',
+    status: 'Status',
+    submissionDate: 'Submission Date',
+    expectedDelivery: 'Expected Delivery',
+    totalValue: 'Total Value',
+    restockingStatus: 'Restocking'
   },
 
   // Common
